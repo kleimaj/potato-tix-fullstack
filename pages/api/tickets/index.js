@@ -7,6 +7,7 @@ const handler = nc()
   .use(async (req, res, next) => {
     next();
   })
+  //  Retrieves upcoming 3 shows
   .get(async (req, res) => {
     // Initialize Browser instance
     const browser = await puppeteer.launch({});
