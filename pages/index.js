@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
+import { Show } from '../src/components';
 
 export default function Home({ upcomingShows }) {
   console.log(upcomingShows);
@@ -20,7 +21,21 @@ export default function Home({ upcomingShows }) {
           Upcoming Shows
         </h1>
         <div className='container my-12 mx-auto px-4 md:px-12'>
-          <div className='flex flex-wrap -mx-1 lg:-mx-4'></div>
+          <div className='p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5'>
+            {upcomingShows.map((show, idx) => (
+              <Show
+                key={idx}
+                artist={show.artist}
+                date={show.date}
+                href={show.href}
+                patio={show.patio}
+                set1={show.set1}
+                set2={show.set2}
+                src={show.src}
+                occupancyRate={show.occupancyRate}
+              />
+            ))}
+          </div>
         </div>
       </main>
 
@@ -44,6 +59,7 @@ export async function getServerSideProps() {
       ticketCount: 21,
       occupancyRate: 0.1346153846153846,
       href: 'https://www.thebakedpotato.com/events/allen-hinds-group-wednesday-december-29-2021/',
+      src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/11/A-HINDS-STREAM-PIC.jpg',
     },
     {
       artist: 'MIKE MILLER SUPER ALLSTARS',
@@ -54,6 +70,7 @@ export async function getServerSideProps() {
       ticketCount: 15,
       occupancyRate: 0.09615384615384616,
       href: 'https://www.thebakedpotato.com/events/mike-miller-super-allstars-thursday-december-30-2021/',
+      src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/11/MIKE-MILLER.jpg',
     },
     {
       artist: 'DON RANDI & QUEST',
@@ -64,6 +81,7 @@ export async function getServerSideProps() {
       ticketCount: 91,
       occupancyRate: 0.5833333333333334,
       href: 'https://www.thebakedpotato.com/events/don-randi-quest-friday-december-31-2021/',
+      src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/08/New-Don-Randi-pic.png',
     },
   ];
   return { props: { upcomingShows: data } };

@@ -106,6 +106,7 @@ const handler = nc()
       resMap['artist'] = artist;
       resMap['date'] = date;
       resMap['href'] = href;
+      resMap['src'] = cal.imgs[i];
       resArr.push(resMap);
     }
     res.status(200).json(resArr);
