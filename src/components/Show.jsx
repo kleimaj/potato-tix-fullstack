@@ -37,13 +37,15 @@ export const Show = ({
   occupancyRate,
 }) => (
   <article className='rounded overflow-hidden shadow-lg'>
-    <Image
-      alt='Placeholder'
-      className='block w=full'
-      width={500}
-      height={500}
-      src={src}
-    />
+    <div>
+      <Image
+        alt='Placeholder'
+        className='block w=full object-cover'
+        width={500}
+        height={500}
+        src={src}
+      />
+    </div>
     <div className='px-6 py-4'>
       <h3 className='font-bold text-xl mb-2 text-center'>
         {toTitleCase(artist)}

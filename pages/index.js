@@ -54,43 +54,43 @@ export default function Home({ upcomingShows }) {
 
 // server-side rendering sales
 export async function getServerSideProps() {
-  // const res = await fetch('http://localhost:3000/api/tickets');
-  // const data = await res.json();
+  const res = await fetch('http://localhost:3000/api/tickets');
+  const data = await res.json();
   // placeholder
-  const data = [
-    {
-      artist: 'ALLEN HINDS GROUP',
-      date: 'Wednesday - 12/29/2021',
-      set1: 17,
-      set2: 2,
-      patio: 0,
-      ticketCount: 21,
-      occupancyRate: 0.1346153846153846,
-      href: 'https://www.thebakedpotato.com/events/allen-hinds-group-wednesday-december-29-2021/',
-      src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/11/A-HINDS-STREAM-PIC.jpg',
-    },
-    {
-      artist: 'MIKE MILLER SUPER ALLSTARS',
-      date: 'Thursday - 12/30/2021',
-      set1: 2,
-      patio: 0,
-      set2: 13,
-      ticketCount: 15,
-      occupancyRate: 0.09615384615384616,
-      href: 'https://www.thebakedpotato.com/events/mike-miller-super-allstars-thursday-december-30-2021/',
-      src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/11/MIKE-MILLER.jpg',
-    },
-    {
-      artist: 'DON RANDI & QUEST',
-      date: 'Friday - 12/31/2021',
-      set1: 34,
-      set2: 55,
-      patio: 2,
-      ticketCount: 91,
-      occupancyRate: 0.5833333333333334,
-      href: 'https://www.thebakedpotato.com/events/don-randi-quest-friday-december-31-2021/',
-      src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/08/New-Don-Randi-pic.png',
-    },
-  ];
+  // const data = [
+  //   {
+  //     artist: 'ALLEN HINDS GROUP',
+  //     date: 'Wednesday - 12/29/2021',
+  //     set1: 17,
+  //     set2: 2,
+  //     patio: 0,
+  //     ticketCount: 21,
+  //     occupancyRate: 0.1346153846153846,
+  //     href: 'https://www.thebakedpotato.com/events/allen-hinds-group-wednesday-december-29-2021/',
+  //     src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/11/A-HINDS-STREAM-PIC.jpg',
+  //   },
+  //   {
+  //     artist: 'MIKE MILLER SUPER ALLSTARS',
+  //     date: 'Thursday - 12/30/2021',
+  //     set1: 2,
+  //     patio: 0,
+  //     set2: 13,
+  //     ticketCount: 15,
+  //     occupancyRate: 0.09615384615384616,
+  //     href: 'https://www.thebakedpotato.com/events/mike-miller-super-allstars-thursday-december-30-2021/',
+  //     src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/11/MIKE-MILLER.jpg',
+  //   },
+  //   {
+  //     artist: 'DON RANDI & QUEST',
+  //     date: 'Friday - 12/31/2021',
+  //     set1: 34,
+  //     set2: 55,
+  //     patio: 2,
+  //     ticketCount: 91,
+  //     occupancyRate: 0.5833333333333334,
+  //     href: 'https://www.thebakedpotato.com/events/don-randi-quest-friday-december-31-2021/',
+  //     src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/08/New-Don-Randi-pic.png',
+  //   },
+  // ];
   return { props: { upcomingShows: data } };
 }
