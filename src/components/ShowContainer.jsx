@@ -1,5 +1,7 @@
 import { Show } from './Show';
 import { useState } from 'react';
+const buttonClass =
+  'mt-5 inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150';
 
 export const ShowContainer = ({ upcomingShows, loadShows, loading }) => {
   return (
@@ -22,8 +24,9 @@ export const ShowContainer = ({ upcomingShows, loadShows, loading }) => {
       </div>
       <button
         type='button'
-        className='mt-5 inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150 cursor-not-allowed'
-        disabled=''
+        className={`mt-5 inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150 ${
+          loading ? `cursor-not-allowed` : `cursor-pointer`
+        }`}
         onClick={() => {
           if (!loading) loadShows();
         }}
