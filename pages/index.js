@@ -31,6 +31,17 @@ export default function Home({ shows }) {
       </Head>
 
       <main className='flex flex-col py-6 px-4 sm:p-6 md:py-10 md:px-8 justify-center'>
+        <div className='flex items-center justify-center mb-5'>
+          <Image
+            alt='Baked Potato Logo'
+            className='object-fit'
+            src={
+              'https://www.thebakedpotato.com/wp-content/uploads/2017/08/logo-1.png'
+            }
+            width={400}
+            height={'100%'}
+          />
+        </div>
         <h1 className='text-3xl font-bold underline text-center'>
           Upcoming Shows
         </h1>

@@ -40,13 +40,13 @@ export const Show = ({
     <div className='text-center pt-4'>
       <Image
         alt={toTitleCase(artist)}
-        className='block w=full object-cover'
+        className='block object-cover'
         width={250}
         height={250}
         src={src}
       />
     </div>
-    <div className='px-6 py-4'>
+    <div className='px-0 sm:px-6 py-4'>
       <h3 className='font-bold text-xl mb-2 text-center'>
         {toTitleCase(artist)}
       </h3>
