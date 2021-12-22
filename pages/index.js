@@ -41,7 +41,7 @@ export default function Home({ shows }) {
           </a>
           )
         </p>
-        <div className='flex flex-col items-center container mx-auto px-4 md:px-12 justify-center'>
+        <div className='flex flex-col items-center container mx-auto px-2 md:px-12 justify-center'>
           {upcomingShows.length ? (
             <ShowContainer
               upcomingShows={upcomingShows}
