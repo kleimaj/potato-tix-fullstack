@@ -4,12 +4,21 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { ShowContainer } from '../src/components';
 
-export default function Home({ upcomingShows }) {
+export default function Home({ shows }) {
   const [idx, setIdx] = useState(0);
-  function loadShows() {
-    console.log('loading');
+  const [upcomingShows, setShows] = useState(shows);
+  const [loading, setLoading] = useState(false);
+
+  const loadShows = async () => {
+    setLoading(true);
     setIdx((idx += 3));
-  }
+    const res = await fetch(`/api/tickets/${idx}`);
+    const newShows = await res.json();
+    console.log(newShows);
+    setShows([...upcomingShows, ...newShows]);
+
+    setLoading(false);
+  };
   return (
     <div>
       <Head>
@@ -26,7 +35,7 @@ export default function Home({ upcomingShows }) {
           Upcoming Shows
         </h1>
         <p className='mb-4 xs:mb-6 sm:mb-6 md:mb-4 lg:mb-0 mt-2 text-lg text-gray-700 dark:text-gray-400 text-center'>
-          Updates are live (webscraped from{' '}
+          Updates are live (web scraped from{' '}
           <a href='https://www.thebakedpotato.com' className='text-indigo-500'>
             www.thebakedpotato.com
           </a>
@@ -37,6 +46,7 @@ export default function Home({ upcomingShows }) {
             <ShowContainer
               upcomingShows={upcomingShows}
               loadShows={loadShows}
+              loading={loading}
             />
           ) : (
             <div className='flex items-center justify-center'>
@@ -111,5 +121,5 @@ export async function getServerSideProps() {
   //     src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/08/New-Don-Randi-pic.png',
   //   },
   // ];
-  return { props: { upcomingShows: data } };
+  return { props: { shows: data } };
 }

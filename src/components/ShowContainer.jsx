@@ -1,8 +1,7 @@
 import { Show } from './Show';
 import { useState } from 'react';
 
-export const ShowContainer = ({ upcomingShows, loadShows }) => {
-  const [loading, setLoading] = useState(false);
+export const ShowContainer = ({ upcomingShows, loadShows, loading }) => {
   return (
     <>
       <div className='lg:p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5'>
@@ -27,7 +26,6 @@ export const ShowContainer = ({ upcomingShows, loadShows }) => {
         disabled=''
         onClick={() => {
           if (!loading) loadShows();
-          setLoading(true);
         }}
       >
         {loading ? (
