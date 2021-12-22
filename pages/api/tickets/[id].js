@@ -7,8 +7,9 @@ const handler = nc()
   //  Retrieves upcoming 3 shows
   .get(async (req, res) => {
     const {
-      query: { idx },
+      query: { id },
     } = req;
+    let idx = parseInt(id);
     // Initialize Browser instance
     const browser = await puppeteer.launch({});
     // Initialize Page variable
@@ -30,7 +31,7 @@ const handler = nc()
       return { artists, dates, anchors, imgs };
     });
     let resArr = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = idx; i < idx + 3; i++) {
       if (i >= cal.artists.length) break;
       let artist = cal.artists[i];
       let date = cal.dates[i];
