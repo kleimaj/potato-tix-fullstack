@@ -1,7 +1,6 @@
 import next from 'next';
 import nc from 'next-connect';
-import chromium from 'chrome-aws-lambda';
-const puppeteer = require('puppeteer-core');
+const chromium = require('chrome-aws-lambda');
 const url = 'https://www.thebakedpotato.com/events-calendar/';
 
 const handler = nc()
@@ -11,6 +10,9 @@ const handler = nc()
     // const browser = await puppeteer.launch({});
     const browser = await chromium.puppeteer.launch({
       executablePath: await chromium.executablePath,
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      headless: chromium.headless,
     });
     // Initialize Page variable
     const page = await browser.newPage();
