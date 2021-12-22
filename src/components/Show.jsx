@@ -82,11 +82,11 @@ export const Show = ({
         </div>
         <div className='w-full flex-none flex items-center p-4 sm:py-5 sm:px-6 lg:p-4 xl:py-5 xl:px-6'>
           <dt className='w-2/5 sm:w-1/4 flex-none text-gray-900'>
-            Total Attendee Rate
+            Attendee Rate
           </dt>
           <dd
             className={
-              'text-sm font-medium rounded-full py-1 px-3 ' +
+              'm-4 text-sm font-medium rounded-full py-1 px-3 ' +
               calculateRed(Math.trunc(occupancyRate * 100))
             }
           >
@@ -100,7 +100,7 @@ export const Show = ({
         nihil.
       </p> */}
       <a
-        className='text-blue-500 underline p-4 sm:p-6 lg:p-4 xl:p-6'
+        className='flex text-center text-blue-500 underline p-4 sm:p-6 lg:p-4 xl:p-6'
         href={href}
       >
         See more about this show
