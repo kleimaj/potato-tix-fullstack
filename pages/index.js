@@ -1,11 +1,14 @@
 import Head from 'next/head';
+import { useState } from 'react';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { ShowContainer } from '../src/components';
 
 export default function Home({ upcomingShows }) {
+  const [idx, setIdx] = useState(0);
   function loadShows() {
     console.log('loading');
+    setIdx((idx += 3));
   }
   return (
     <div>
@@ -24,7 +27,7 @@ export default function Home({ upcomingShows }) {
         </h1>
         <p className='mb-4 xs:mb-6 sm:mb-6 md:mb-4 lg:mb-0 mt-2 text-lg text-gray-700 dark:text-gray-400 text-center'>
           Updates are live (webscraped from{' '}
-          <a href='https://www.thebakedpotato.com' className='text-blue-500'>
+          <a href='https://www.thebakedpotato.com' className='text-indigo-500'>
             www.thebakedpotato.com
           </a>
           )

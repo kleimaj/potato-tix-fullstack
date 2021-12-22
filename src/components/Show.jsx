@@ -102,7 +102,7 @@ export const Show = ({
         nihil.
       </p> */}
       <a
-        className='flex text-center text-blue-500 underline p-4 sm:p-6 lg:p-4 xl:p-6'
+        className='flex text-center text-indigo-500 underline p-4 sm:p-6 lg:p-4 xl:p-6'
         href={href}
       >
         See more about this show
