@@ -37,12 +37,12 @@ export const Show = ({
   occupancyRate,
 }) => (
   <article className='rounded overflow-hidden shadow-lg'>
-    <div className='text-center'>
+    <div className='text-center pt-4'>
       <Image
-        alt='Placeholder'
+        alt={toTitleCase(artist)}
         className='block w=full object-cover'
-        width={500}
-        height={500}
+        width={250}
+        height={250}
         src={src}
       />
     </div>
@@ -58,31 +58,31 @@ export const Show = ({
             <time dateTime='2020-11-15T10:00:00-05:00'>{date}</time>
           </dd>
         </div>
-        <div className='md:justify-start justify-center w-full flex-none flex items-center p-4 sm:p-6 lg:p-4 xl:p-6'>
+        <div className='md:justify-start lg:justify-between xl:justify-start justify-center w-full flex-none flex items-center p-4 sm:p-6 lg:p-4 xl:p-6'>
           <dt className='w-2/5 sm:w-1/4 flex-none text-gray-700'>
             {date == 'Friday - 12/31/2021' ? 'Full Package' : 'Set 1'}
           </dt>
           <dd className={set1 >= 52 ? 'font-bold' : ''}>{set1} Tickets Sold</dd>
         </div>
-        <div className='md:justify-start justify-center w-full bg-gray-100 flex-none flex items-center p-4 sm:p-6 lg:p-4 xl:p-6'>
+        <div className='md:justify-start lg:justify-between xl:justify-start justify-center w-full bg-gray-100 flex-none flex items-center p-4 sm:p-6 lg:p-4 xl:p-6'>
           <dt className='w-2/5 sm:w-1/4 flex-none text-gray-700'>
             {date == 'Friday - 12/31/2021' ? 'Inside Cover' : 'Set 2'}
           </dt>
           <dd className={set2 >= 52 ? 'font-bold' : ''}>{set2} Tickets Sold</dd>
         </div>
-        <div className='md:justify-start justify-center w-full flex-none flex items-center p-4 sm:p-6 lg:p-4 xl:p-6'>
+        <div className='md:justify-start lg:justify-between xl:justify-start justify-center w-full flex-none flex items-center p-4 sm:p-6 lg:p-4 xl:p-6'>
           <dt className='w-2/5 sm:w-1/4 flex-none text-gray-700'>Patio</dt>
           <dd className={patio == 26 ? 'font-bold' : ''}>
             {patio} Tickets Sold
           </dd>
         </div>
-        <div className='md:justify-start justify-center w-full bg-gray-100 flex-none flex items-center p-4 sm:p-6 lg:p-4 xl:p-6'>
+        <div className='md:justify-start lg:justify-between xl:justify-start justify-center w-full bg-gray-100 flex-none flex items-center p-4 sm:p-6 lg:p-4 xl:p-6'>
           <dt className='w-2/5 sm:w-1/4 flex-none text-gray-900 font-semibold'>
             Total
           </dt>
           <dd className='font-semibold'>{ticketCount} Tickets Sold</dd>
         </div>
-        <div className='md:justify-start justify-center w-full flex-none flex items-center p-4 sm:py-5 sm:px-6 lg:p-4 xl:py-5 xl:px-6'>
+        <div className='md:justify-between lg:justify-between xl:justify-start justify-center w-full flex-none flex items-center p-4 sm:py-5 sm:px-6 lg:p-4 xl:py-5 xl:px-6'>
           <dt className='w-2/5 sm:w-1/4 flex-none text-gray-900'>
             Attendee Rate
           </dt>
