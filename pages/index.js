@@ -6,7 +6,7 @@ import { Show } from '../src/components';
 export default function Home({ upcomingShows }) {
   console.log(upcomingShows);
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Potato Tix</title>
         <meta
@@ -20,8 +20,15 @@ export default function Home({ upcomingShows }) {
         <h1 className='text-3xl font-bold underline text-center'>
           Upcoming Shows
         </h1>
-        <div className='container my-12 mx-auto px-4 md:px-12'>
-          <div className='p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5'>
+        <p className='mb-4 xs:mb-6 sm:mb-6 md:mb-4 lg:mb-0 mt-2 text-lg text-gray-700 dark:text-gray-400 text-center'>
+          Updates are live (webscraped from{' '}
+          <a href='https://www.thebakedpotato.com' className='text-blue-500'>
+            www.thebakedpotato.com
+          </a>
+          )
+        </p>
+        <div className='container mx-auto px-4 md:px-12'>
+          <div className='lg:p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5'>
             {upcomingShows.map((show, idx) => (
               <Show
                 key={idx}
@@ -32,6 +39,7 @@ export default function Home({ upcomingShows }) {
                 set1={show.set1}
                 set2={show.set2}
                 src={show.src}
+                ticketCount={show.ticketCount}
                 occupancyRate={show.occupancyRate}
               />
             ))}
@@ -54,7 +62,7 @@ export async function getServerSideProps() {
       artist: 'ALLEN HINDS GROUP',
       date: 'Wednesday - 12/29/2021',
       set1: 17,
-      set2: 4,
+      set2: 2,
       patio: 0,
       ticketCount: 21,
       occupancyRate: 0.1346153846153846,
