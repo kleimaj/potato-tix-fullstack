@@ -4,7 +4,9 @@ import styles from '../styles/Home.module.css';
 import { ShowContainer } from '../src/components';
 
 export default function Home({ upcomingShows }) {
-  console.log(upcomingShows);
+  function loadShows() {
+    console.log('loading');
+  }
   return (
     <div>
       <Head>
@@ -27,9 +29,12 @@ export default function Home({ upcomingShows }) {
           </a>
           )
         </p>
-        <div className='container mx-auto px-4 md:px-12 justify-center'>
+        <div className='flex flex-col items-center container mx-auto px-4 md:px-12 justify-center'>
           {upcomingShows.length ? (
-            <ShowContainer upcomingShows={upcomingShows} />
+            <ShowContainer
+              upcomingShows={upcomingShows}
+              loadShows={loadShows}
+            />
           ) : (
             <div className='flex items-center justify-center'>
               <svg
