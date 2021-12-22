@@ -1,4 +1,3 @@
-import next from 'next';
 import nc from 'next-connect';
 const chromium = require('chrome-aws-lambda');
 const url = 'https://www.thebakedpotato.com/events-calendar/';
@@ -9,14 +8,15 @@ const handler = nc()
     // Initialize Browser instance
     // const browser = await puppeteer.launch({});
     const browser = await chromium.puppeteer.launch({
-      executablePath: await chromium.executablePath,
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      headless: chromium.headless,
+      args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath,
+    headless: true,
+    ignoreHTTPSErrors: true,
     });
     // Initialize Page variable
     const page = await browser.newPage();
-    await page.goto('https://www.thebakedpotato.com/events-calendar/');
+    await page.goto(url);
     let cal = await page.evaluate(() => {
       let artists = Array.from(
         document.querySelectorAll('.event > div >h1')
@@ -33,6 +33,7 @@ const handler = nc()
       return { artists, dates, anchors, imgs };
     });
     let resArr = [];
+    // res.status(200).json(cal);
     for (let i = 0; i < 3; i++) {
       let artist = cal.artists[i];
       let date = cal.dates[i];
@@ -105,7 +106,8 @@ const handler = nc()
         resultMap['occupancyRate'] = ticketCount / 156;
         return resultMap;
       });
-      artist = artist.replaceAll('\n', ' ');
+      // artist = artist.replaceAll('\n', ' ');
+      artist = artist.split('\n').join(' ');
       resMap['artist'] = artist;
       resMap['date'] = date;
       resMap['href'] = href;

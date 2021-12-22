@@ -1,7 +1,5 @@
-import next from 'next';
 import nc from 'next-connect';
 import chromium from 'chrome-aws-lambda';
-const puppeteer = require('puppeteer');
 const url = 'https://www.thebakedpotato.com/events-calendar/';
 
 const handler = nc()
@@ -12,13 +10,16 @@ const handler = nc()
     } = req;
     let idx = parseInt(id);
     // Initialize Browser instance
-    // const browser = await puppeteer.launch({});
     const browser = await chromium.puppeteer.launch({
-      executablePath: await chromium.executablePath,
+      args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath,
+    headless: true,
+    ignoreHTTPSErrors: true,
     });
     // Initialize Page variable
     const page = await browser.newPage();
-    await page.goto('https://www.thebakedpotato.com/events-calendar/');
+    await page.goto(url);
     let cal = await page.evaluate(() => {
       let artists = Array.from(
         document.querySelectorAll('.event > div >h1')
@@ -108,7 +109,9 @@ const handler = nc()
         resultMap['occupancyRate'] = ticketCount / 156;
         return resultMap;
       });
-      artist = artist.replaceAll('\n', ' ');
+      // artist = artist.replaceAll('\n', ' ');
+      artist = artist.split('\n').join(' ');
+
       resMap['artist'] = artist;
       resMap['date'] = date;
       resMap['href'] = href;
