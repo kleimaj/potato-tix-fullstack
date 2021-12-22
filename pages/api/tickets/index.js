@@ -1,16 +1,17 @@
 import next from 'next';
 import nc from 'next-connect';
-const puppeteer = require('puppeteer');
+import chromium from 'chrome-aws-lambda';
+const puppeteer = require('puppeteer-core');
 const url = 'https://www.thebakedpotato.com/events-calendar/';
 
 const handler = nc()
-  .use(async (req, res, next) => {
-    next();
-  })
   //  Retrieves upcoming 3 shows
   .get(async (req, res) => {
     // Initialize Browser instance
-    const browser = await puppeteer.launch({});
+    // const browser = await puppeteer.launch({});
+    const browser = await chromium.puppeteer.launch({
+      executablePath: await chromium.executablePath,
+    });
     // Initialize Page variable
     const page = await browser.newPage();
     await page.goto('https://www.thebakedpotato.com/events-calendar/');
