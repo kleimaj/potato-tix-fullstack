@@ -93,7 +93,7 @@ export default function Home({ shows }) {
 
 // server-side rendering sales
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:3000/api/tickets');
+  const res = await fetch(process.env.BACKEND_URL + '/tickets');
   const data = await res.json();
   // placeholder
   // const data = [];
