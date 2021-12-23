@@ -1,13 +1,23 @@
 import Head from 'next/head';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { ShowContainer } from '../src/components';
 
-export default function Home({ shows }) {
+export default function Home() {
   const [idx, setIdx] = useState(0);
-  const [upcomingShows, setShows] = useState(shows);
+  const [upcomingShows, setShows] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const fetchShows = async () => {
+    const res = await fetch(`/api/tickets`);
+    const data = await res.json();
+    setShows(data);
+  };
+
+  useEffect(() => {
+    fetchShows();
+  }, []);
 
   const loadShows = async () => {
     setLoading(true);
@@ -19,6 +29,7 @@ export default function Home({ shows }) {
 
     setLoading(false);
   };
+
   return (
     <div>
       <Head>
@@ -60,7 +71,8 @@ export default function Home({ shows }) {
               loading={loading}
             />
           ) : (
-            <div className='flex items-center justify-center'>
+            <div className='flex flex-col items-center justify-center'>
+              <p className='text-gray-500'>Loading Shows...</p>
               <svg
                 className='animate-spin -ml-1 mr-3 h-10 w-10 text-black mt-5'
                 xmlns='http://www.w3.org/2000/svg'
@@ -92,45 +104,45 @@ export default function Home({ shows }) {
 }
 
 // server-side rendering sales
-export async function getServerSideProps() {
-  const res = await fetch(process.env.BACKEND_URL + '/tickets');
-  const data = await res.json();
-  // placeholder
-  // const data = [];
-  // const data = [
-  //   {
-  //     artist: 'ALLEN HINDS GROUP',
-  //     date: 'Wednesday - 12/29/2021',
-  //     set1: 17,
-  //     set2: 2,
-  //     patio: 0,
-  //     ticketCount: 21,
-  //     occupancyRate: 0.1346153846153846,
-  //     href: 'https://www.thebakedpotato.com/events/allen-hinds-group-wednesday-december-29-2021/',
-  //     src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/11/A-HINDS-STREAM-PIC.jpg',
-  //   },
-  //   {
-  //     artist: 'MIKE MILLER SUPER ALLSTARS',
-  //     date: 'Thursday - 12/30/2021',
-  //     set1: 2,
-  //     patio: 0,
-  //     set2: 13,
-  //     ticketCount: 15,
-  //     occupancyRate: 0.09615384615384616,
-  //     href: 'https://www.thebakedpotato.com/events/mike-miller-super-allstars-thursday-december-30-2021/',
-  //     src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/11/MIKE-MILLER.jpg',
-  //   },
-  //   {
-  //     artist: 'DON RANDI & QUEST',
-  //     date: 'Friday - 12/31/2021',
-  //     set1: 34,
-  //     set2: 55,
-  //     patio: 2,
-  //     ticketCount: 91,
-  //     occupancyRate: 0.5833333333333334,
-  //     href: 'https://www.thebakedpotato.com/events/don-randi-quest-friday-december-31-2021/',
-  //     src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/08/New-Don-Randi-pic.png',
-  //   },
-  // ];
-  return { props: { shows: data } };
-}
+// export async function getServerSideProps() {
+//   const res = await fetch(process.env.BACKEND_URL + '/tickets');
+//   const data = await res.json();
+//   // placeholder
+//   // const data = [];
+//   // const data = [
+//   //   {
+//   //     artist: 'ALLEN HINDS GROUP',
+//   //     date: 'Wednesday - 12/29/2021',
+//   //     set1: 17,
+//   //     set2: 2,
+//   //     patio: 0,
+//   //     ticketCount: 21,
+//   //     occupancyRate: 0.1346153846153846,
+//   //     href: 'https://www.thebakedpotato.com/events/allen-hinds-group-wednesday-december-29-2021/',
+//   //     src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/11/A-HINDS-STREAM-PIC.jpg',
+//   //   },
+//   //   {
+//   //     artist: 'MIKE MILLER SUPER ALLSTARS',
+//   //     date: 'Thursday - 12/30/2021',
+//   //     set1: 2,
+//   //     patio: 0,
+//   //     set2: 13,
+//   //     ticketCount: 15,
+//   //     occupancyRate: 0.09615384615384616,
+//   //     href: 'https://www.thebakedpotato.com/events/mike-miller-super-allstars-thursday-december-30-2021/',
+//   //     src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/11/MIKE-MILLER.jpg',
+//   //   },
+//   //   {
+//   //     artist: 'DON RANDI & QUEST',
+//   //     date: 'Friday - 12/31/2021',
+//   //     set1: 34,
+//   //     set2: 55,
+//   //     patio: 2,
+//   //     ticketCount: 91,
+//   //     occupancyRate: 0.5833333333333334,
+//   //     href: 'https://www.thebakedpotato.com/events/don-randi-quest-friday-december-31-2021/',
+//   //     src: 'https://www.thebakedpotato.com/wp-content/uploads/2021/08/New-Don-Randi-pic.png',
+//   //   },
+//   // ];
+//   return { props: { shows: data } };
+// }
