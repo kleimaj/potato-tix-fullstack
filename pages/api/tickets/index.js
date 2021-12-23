@@ -103,7 +103,7 @@ const handler = nc()
           }
         });
         resultMap['ticketCount'] = ticketCount;
-        resultMap['occupancyRate'] = ticketCount / 156;
+        resultMap['occupancyRate'] = ticketCount / 130;
         return resultMap;
       });
       // artist = artist.replaceAll('\n', ' ');
