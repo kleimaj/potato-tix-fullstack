@@ -60,13 +60,13 @@ export const Show = ({
         </div>
         <div className='md:justify-start lg:justify-between xl:justify-start justify-center w-full flex-none flex items-center p-4 sm:p-6 lg:p-4 xl:p-6'>
           <dt className='w-2/5 sm:w-1/4 flex-none text-gray-700'>
-            {date == 'Friday - 12/31/2021' ? 'Inside Cover' : 'Set 1'}
+            {date == 'Friday - 12/31/2021' ? 'Full Package' : 'Set 1'}
           </dt>
           <dd className={set1 >= 52 ? 'font-bold' : ''}>{set1} Tickets Sold</dd>
         </div>
         <div className='md:justify-start lg:justify-between xl:justify-start justify-center w-full bg-gray-100 flex-none flex items-center p-4 sm:p-6 lg:p-4 xl:p-6'>
           <dt className='w-2/5 sm:w-1/4 flex-none text-gray-700'>
-            {date == 'Friday - 12/31/2021' ? 'Full Package' : 'Set 2'}
+            {date == 'Friday - 12/31/2021' ? 'Inside Cover' : 'Set 2'}
           </dt>
           <dd className={set2 >= 52 ? 'font-bold' : ''}>{set2} Tickets Sold</dd>
         </div>
