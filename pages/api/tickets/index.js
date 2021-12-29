@@ -62,7 +62,7 @@ const handler = nc()
           const isPatio = elements[idx]
             .querySelector('.tribe-tickets__item__content__title')
             .textContent.includes('Patio');
-          if (available) {
+          if (available === 'true') {
             // compute amount of tickets available
             for (let i = 0; i < 70; i++) {
               elements[idx]
@@ -96,7 +96,7 @@ const handler = nc()
               // refactor this
               if ('set1' in resultMap) {
                 resultMap['set2'] = INSIDE_COUNT;
-              } else if (idx == 1) {
+              } else {
                 resultMap['set1'] = INSIDE_COUNT;
               }
             }

@@ -12,18 +12,6 @@ export default function Home() {
   const [seconds, setSeconds] = useState(3);
   const intervalRef = useRef();
 
-  const fetchShows = async () => {
-    const res = await fetch(`/api/tickets`);
-    console.log(res);
-    if (res.status === 500) {
-      setError(1);
-      countDown();
-      return;
-    }
-    const data = await res.json();
-    setShows(data);
-  };
-
   const countDown = () => {
     intervalRef.current = setInterval(() => {
       setSeconds((t) => t - 1);
@@ -32,6 +20,17 @@ export default function Home() {
   };
 
   useEffect(() => {
+    const fetchShows = async () => {
+      const res = await fetch(`/api/tickets`);
+      console.log(res);
+      if (res.status === 500) {
+        setError(1);
+        countDown();
+        return;
+      }
+      const data = await res.json();
+      setShows(data);
+    };
     fetchShows();
   }, []);
   useEffect(() => {
